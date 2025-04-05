@@ -4,7 +4,6 @@ const ethWallet = require("ethereumjs-wallet");
 const hdkey = ethWallet.hdkey;
 const solWallet = require("@solana/web3.js");
 const elip = require("ed25519-hd-key")
-const derivePath = elip.derivePath;
 
 var ethAccCounter = 0;
 var solAccCounter = 0;
@@ -29,19 +28,12 @@ app.post("/ethKeys", (req, res) => {
     })   
 })
 
-// app.post("/solKeys", (req, res) => {
-//     const seed = Buffer.from(req.body.seed, 'hex');
-//     const path = `m/44'/501'/${solAccCounter}'/0'`;
-//     const derivedSeed = solWallet.derivePath(path, seed.toString('hex')).key; //from ed25519-hd-key
-
-//     // 3. Generate Keypair
-//     const keypair = Keypair.fromSeed(derivedSeed); // 32-byte seed
-
-//     4. Display address and private key
-//     console.log("Public Key:", keypair.publicKey.toBase58());
-//     console.log("Private Key:", Buffer.from(keypair.secretKey).toString('hex'));
-//     res.send("Hello");
-// })
-
+app.post("/solKeys", (req, res) => {
+    const seed = bip.mnemonicToSeedSync(req.body.mnemonics); //Buffer
+    const privRootKey = elip.derivePath(`m/44'/501'/${solAccCounter}'/0'`, seed.toString("hex"));
+    solAccCounter++;
+    const keypair = solWallet.Keypair.fromSeed(new Uint8Array(privRootKey.key)); //publicKey
+    res.send(keypair.publicKey.toBase58());
+})
 
 app.listen(3000);
