@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyWallet</title>
+    <script src="myscripts.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+    <div>
+        <input id="mnemonics" type="text" placeholder="Enter 12-word Mnemonics">
+        <button onclick="generateSeedPhrase()">Set Mnemonics</button>
+        <p>If nothing is entered, random mnemonics will be assigned.</p>
+    </div>
+
+    <div id = "displayMnemonics-div">
+        <p style="margin: 0;">Selected Mnemonics:</p>
+        <div id="finalMnemonics"></div>
+    </div>
+
+    <div>
+        <table border="1" style="width: 100%; text-align: center; border-collapse: collapse;">
+            <thead>
+                <tr>
+                    <th colspan="2">Ethereum</th>
+                    <th colspan="2">Solana</th>
+                </tr>
+                <tr>
+                    <th>Public Address</th>
+                    <th style="width: 10%;">Balance</th>
+                    <th>Public Address</th>
+                    <th style="width: 10%">Balance</th>
+                </tr>
+            </thead>
+            <tbody id="walletTableBody"></tbody>
+        </table>
+    </div>
+    <div>
+        <button id="addEth">Add Ethereum Account</button>
+        <button id="addSol">Add Solana Account</button>
+    </div>
+    <script src="myscripts.js"></script>
+</body>
+
+</html>
