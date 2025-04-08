@@ -4,12 +4,14 @@ const ethWallet = require("ethereumjs-wallet");
 const hdkey = ethWallet.hdkey;
 const solWallet = require("@solana/web3.js");
 const elip = require("ed25519-hd-key")
+const cors = require("cors");
 
 var ethAccCounter = 0;
 var solAccCounter = 0;
 
 const app = express()
 app.use(express.json());
+app.use(cors());
 
 app.get("/seedphrase", (req, res) => {
     const mnemonics = bip.generateMnemonic(128);
@@ -23,9 +25,8 @@ app.post("/ethKeys", (req, res) => {
     const hdWalletNode = hdwallet.derivePath(path);
     const account = hdWalletNode.getWallet().getAddressString();
     ethAccCounter++; 
-    res.json({
-        publicKey: account
-    })   
+    console.log(ethAccCounter);
+    res.send(account);   
 })
 
 app.post("/solKeys", (req, res) => {
