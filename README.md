@@ -1,4 +1,7 @@
 # Multi-Chain HD Wallet Generator 
+
+🟢 **Live Demo:** [my-hd-wallet.netlify.app](https://my-hd-wallet.netlify.app/)
+<br><br>
 Bootstrapped with **React + TypeScript + Vite**
 
 This project is a **React-based wallet generator** that supports both **Ethereum** and **Solana** keypair/address derivation from a BIP-39 mnemonic seed phrase.
